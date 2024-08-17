@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="writing-container">
+    <textarea id="writing-area" class="writing-area" placeholder="Start typing..."></textarea>
+</div>
+
+<div id="warning-modal" class="modal">
+    <div class="modal-content">
+        <p>Se detectó inactividad. Por favor, vuelve a intentarlo.</p>
+        <button onclick="location.reload()">Reintentar</button>
+    </div>
+</div>
+
+<script>
+    let timeout, warningTimeout;
+    const warningModal = document.getElementById('warning-modal');
+    const writingArea = document.getElementById('writing-area');
+
+    function resetTimer() {
+        clearTimeout(timeout);
+        clearTimeout(warningTimeout);
+        document.body.classList.remove('inactive');
+        warningModal.style.display = 'none';
+        writingArea.disabled = false;
+
+        warningTimeout = setTimeout(() => {
+            document.body.classList.add('inactive');
+        }, 3500); // Efecto rojo tras 5 segundos de inactividad
+
+        timeout = setTimeout(triggerWarning, 5000); // Bloqueo tras 10 segundos de inactividad
+    }
+
+    function triggerWarning() {
+        writingArea.disabled = true;
+        warningModal.style.display = 'block';
+    }
+
+    writingArea.addEventListener('input', resetTimer);
+    resetTimer(); // Inicializa el temporizador al cargar la página
+</script>
+{% endblock %}

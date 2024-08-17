@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.start-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.start-btn:hover {
+    background-color: #ccc;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #111;
+    color: #ccc;
+}
+
+.writing-container {
+    padding: 20px;
+    max-width: 90%; /* Cambiado para ocupar más ancho */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    margin: 0 auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.writing-area {
+    width: 100%;
+    height: 80vh; /* Puedes ajustar esta altura según prefieras */
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    resize: none;
+}
+
+.start-link {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: #000;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.start-link:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+}
+
+.start-link:active {
+    background-color: #aaa;
+    transform: scale(1);
+}
+
+body.inactive {
+    position: relative;
+    overflow: hidden; /* Asegura que no haya desplazamiento */
+}
+
+body.inactive::before, 
+body.inactive::after {
+    content: '';
+    position: fixed; /* Cambia de absolute a fixed para que esté siempre dentro del viewport */
+    z-index: 2;
+    pointer-events: none;
+    border: 10px solid rgba(255, 0, 0, 0.5); /* Grosor del borde más delgado para que no se sobreponga demasiado */
+    border-radius: 5px;
+    animation: flicker 0.1s infinite alternate;
+    box-sizing: border-box; /* Asegura que los bordes no incrementen el tamaño del elemento */
+}
+
+body.inactive::before {
+    top: 0;
+    left: 0;
+    width: 100vw; /* Utiliza todo el ancho de la pantalla */
+    height: 50vh; /* Ocupa la mitad superior de la pantalla */
+    border-bottom: none; /* Solo las esquinas superiores e inferiores deben tener bordes */
+}
+
+body.inactive::after {
+    bottom: 0;
+    left: 0;
+    width: 100vw; /* Utiliza todo el ancho de la pantalla */
+    height: 50vh; /* Ocupa la mitad inferior de la pantalla */
+    border-top: none; /* Solo las esquinas superiores e inferiores deben tener bordes */
+}
+
+@keyframes flicker {
+    0% { border-color: rgba(255, 0, 0, 0.7); }
+    100% { border-color: rgba(255, 0, 0, 0.9); }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Asegura que el modal esté dentro del viewport */
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
